@@ -1,4 +1,6 @@
  import swaggerJSDoc from 'swagger-jsdoc';
+ import dotenv from 'dotenv';
+dotenv.config()
 import path from 'path';
 
 const options = {
@@ -11,7 +13,7 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:7000',
+        url: process.env.NODE_ENV == "development"? 'http://localhost:7000' : "https://final-project-node-js-i11z.onrender.com/",
       },
     ],
     components: {
