@@ -1,7 +1,4 @@
- import swaggerJSDoc from 'swagger-jsdoc';
- import dotenv from 'dotenv';
-dotenv.config()
-import path from 'path';
+ import swaggerJsdoc from 'swagger-jsdoc';
 
 const options = {
   definition: {
@@ -9,11 +6,17 @@ const options = {
     info: {
       title: 'Finance Tracker API',
       version: '1.0.0',
-      description: 'API Documentation',
+      description: 'API documentation for the Finance Tracker Node.js project',
     },
     servers: [
       {
-        url: process.env.NODE_ENV == "development"? 'http://localhost:7000' : "https://final-project-node-js-i11z.onrender.com/",
+        // Replace with your actual Render URL
+        url: 'https://final-project-node.onrender.com', 
+        description: 'Production server (Render)',
+      },
+      {
+        url: 'http://localhost:7000',
+        description: 'Local development server',
       },
     ],
     components: {
@@ -26,9 +29,8 @@ const options = {
       },
     },
   },
- 
-  apis: [path.resolve('./routes/*.js')],
+  // This tells Swagger where to look for the @swagger comments
+  apis: ['./routes/*.js'], 
 };
 
-const swaggerSpec = swaggerJSDoc(options);
-export { swaggerSpec };
+export const swaggerSpec = swaggerJsdoc(options);
